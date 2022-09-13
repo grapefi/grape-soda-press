@@ -1,0 +1,38 @@
+/*  ------------------------------------------------- */
+/*  General */
+/*  ------------------------------------------------- */
+.app-bg {
+  @apply bg-gradient-radial from-brand-1 to-brand-2;
+}
+.app-container {
+  @apply px-4 sm:px-6 lg:px-8 mx-auto;
+}
+
+.font-superstar {
+  @apply font-brand text-brand-3;
+}
+
+.bg-brand-1 {
+  background-color: #930993 !important;
+}
+
+.bg-brand-2 {
+  background-color: #641d64 !important;
+}
+
+.app-btn {
+  @apply bg-brand-1 text-white font-bold py-2 px-4 rounded;
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 1);
+}
+
+.app-btn:hover {
+  background-color: #641d64 !important;
+}
+
+.bg-primary {
+  background-color: #930993;
+}
+
+.btn-disabled {
+  @apply bg-gray-400 hover:bg-gray-400 cursor-not-allowed;
+}
