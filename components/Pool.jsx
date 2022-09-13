@@ -5,12 +5,12 @@ import { utils } from "ethers";
 import Card from "./utils/Card";
 // Hooks
 import useMinerRead from "../hooks/useMinerRead";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 export default function Pool(lpPrice) {
   const { totalDeposited } = useMinerRead();
   const [depositedAmount, setDepositedAmount] = useState(0);
-  const wineMimLPPrice = useWineMIMPrice();
+  const grapeXGrapePrice = usePairPrice();
 
   useEffect(() => {
     if (
@@ -26,14 +26,13 @@ export default function Pool(lpPrice) {
   }, [totalDeposited.data]);
 
   return (
-    <Card title="Wine Press Balance" image="gshare-mim.png">
+    <Card title="Grape Soda Balance" image="gshare-mim.png">
       <div className="flex justify-between">
         <h1>Total Deposited</h1>
         <div style={{ textAlign: "right" }}>
-          <CountUp end={depositedAmount} decimals={2} separator="," /> Wine-MIM
-          LP
-          {wineMimLPPrice && (
-            <div className="text-xs">~${(depositedAmount * wineMimLPPrice).toFixed(2)}</div>
+          <CountUp end={depositedAmount} decimals={2} separator="," /> Grape-xGrape LP
+          {grapeXGrapePrice && (
+            <div className="text-xs">~${(depositedAmount * grapeXGrapePrice).toFixed(2)}</div>
           )}
         </div>
       </div>

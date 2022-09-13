@@ -7,13 +7,13 @@ import Card from "./utils/Card";
 import useLottoRead from "../hooks/useLottoRead";
 // Helpers
 import shortenAddress from "../helpers/shortenAddress";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 export default function TopDepositedPrize() {
   const { largestDaily } = useLottoRead();
   const [largestDepositor, setLargestDepositer] = useState("Loading...");
   const [largestDepositAmount, setLargestDepositAmount] = useState(0);
-  const wineMimLPPrice = useWineMIMPrice();
+  const wineMimLPPrice = usePairPrice();
 
   useEffect(() => {
     if (!largestDaily || largestDaily.isFetching) return;
@@ -33,7 +33,7 @@ export default function TopDepositedPrize() {
         <div>Amount</div>
         <div style={{textAlign: 'right'}}>
           <CountUp end={largestDepositAmount} decimals={2} separator="," />{" "}
-          Wine-MIM LP
+          Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(largestDepositAmount * wineMimLPPrice).toFixed(2)}

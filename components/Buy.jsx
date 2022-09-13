@@ -1,34 +1,29 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import metamaskImg from '../public/img/metamask.png';
+import metamaskImg from "../public/img/metamask.png";
 import Image from "next/image";
 
 export default function Buy() {
-  const [ethereum, setEthereum] = useState()
-  
+  const [ethereum, setEthereum] = useState();
+
   useEffect(() => {
-    const { ethereum } = window
+    const { ethereum } = window;
     setEthereum(ethereum);
-  }, [])
-  
+  }, []);
 
   const watchOnMM = (assetName) => {
     let address;
     let image;
 
-    if (assetName === "WINE") {
-      address = "0xC55036B5348CfB45a932481744645985010d3A44";
+    if (assetName === "xGRAPE") {
+      address = "0xe00b91f35924832d1a7d081d4dced55f3b80fb5c";
       image =
-        "https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/gshare.png";
+        "https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/xGrape.png";
     } else if (assetName === "MIM") {
       address = "0x130966628846BFd36ff31a822705796e8cb8C18D";
       image =
         "https://raw.githubusercontent.com/grapefi/front-end/77fa78f2b05b9fecfc0ebd43aef4560c0c00890b/src/assets/img/mim.png";
-    } else if (assetName === "WINE-MIM LP") {
-      address = "0x00cB5b42684DA62909665d8151fF80D1567722c3";
-      image =
-        "https://github.com/grapefi/front-end/blob/main/src/assets/img/gshare-mim.png?raw=true";
     }
     if (ethereum) {
       ethereum.request({
@@ -74,28 +69,14 @@ export default function Buy() {
               <Menu.Item>
                 {({ active }) => (
                   <a
-                    href="https://app.bogged.finance/avax/swap?tokenIn=0x130966628846BFd36ff31a822705796e8cb8C18D&tokenOut=0xC55036B5348CfB45a932481744645985010d3A44"
+                    href="https://xgrape.grapefinance.app/"
                     target="_blank"
                     rel="noreferrer"
                     className={`${
                       active ? "bg-primary text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    Buy Wine
-                  </a>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <a
-                    href="https://traderjoexyz.com/pool/0x130966628846bfd36ff31a822705796e8cb8c18d/0xc55036b5348cfb45a932481744645985010d3a44#/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`${
-                      active ? "bg-primary text-white" : "text-gray-900"
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                  >
-                    Provide Wine-MIM Liquidity
+                    Buy xGrape
                   </a>
                 )}
               </Menu.Item>
@@ -117,24 +98,36 @@ export default function Buy() {
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={() => watchOnMM("WINE")}
+                    onClick={() => watchOnMM("xGrape")}
                     className={`${
                       active ? "bg-primary text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    <Image alt="Metamask" src={metamaskImg} width={30} height={30} /> Add Wine
+                    <Image
+                      alt="Metamask"
+                      src={metamaskImg}
+                      width={30}
+                      height={30}
+                    />{" "}
+                    Add xGrape
                   </button>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
                   <button
-                    onClick={() => watchOnMM("WINE-MIM LP")}
+                    onClick={() => watchOnMM("Grape-xGrape LP")}
                     className={`${
                       active ? "bg-primary text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    <Image alt="Metamask" src={metamaskImg} width={30} height={30} /> Add Wine-MIM LP
+                    <Image
+                      alt="Metamask"
+                      src={metamaskImg}
+                      width={30}
+                      height={30}
+                    />{" "}
+                    Add Grape-xGrape LP
                   </button>
                 )}
               </Menu.Item>
@@ -146,7 +139,13 @@ export default function Buy() {
                       active ? "bg-primary text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    <Image alt="Metamask" src={metamaskImg} width={30} height={30} /> Add MIM
+                    <Image
+                      alt="Metamask"
+                      src={metamaskImg}
+                      width={30}
+                      height={30}
+                    />{" "}
+                    Add MIM
                   </button>
                 )}
               </Menu.Item>

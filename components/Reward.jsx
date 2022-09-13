@@ -14,7 +14,7 @@ import usePrevious from "../hooks/usePrevious";
 
 // Helpers
 import { networkBlockExplorers } from "../helpers/networks";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 const Rewards = memo(() => {
   // context
@@ -29,7 +29,7 @@ const Rewards = memo(() => {
   const prevClaimBalance = usePrevious(claimBalance);
   const [claimIsLoading, setClaimIsLoading] = useState(false);
   const [compoundIsLoading, setCompoundIsLoading] = useState(false);
-  const wineMimLPPrice = useWineMIMPrice();
+  const wineMimLPPrice = usePairPrice();
 
   const claimFeeFormatted = useMemo(() => {
     if (!claimFee) return "...";

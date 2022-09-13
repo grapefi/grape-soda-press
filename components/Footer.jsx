@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="footer">
       <div>
         <span className="footer-title flex justify-center pt-2">
-          Copyright © Wine Press |{" "}
+          Copyright © Grape Soda Press |{" "}
           <a
             className="ml-2 underline"
             href="https://grapefinance.app"

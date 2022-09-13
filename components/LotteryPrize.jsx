@@ -6,7 +6,7 @@ import BurnWine from "./BurnWine";
 import Card from "./utils/Card";
 // Hooks
 import useLottoRead from "../hooks/useLottoRead";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 const secondsInHour = 3600;
 const hoursInDay = 24;
@@ -32,7 +32,7 @@ export default function LotteryPrize() {
   const [userWinningsAmount, setUserWinningsAmount] = useState(0);
   const [userTickets, setUserTickets] = useState(0);
   const [totalTickets, setTotalTickets] = useState(0);
-  const wineMimLPPrice = useWineMIMPrice();
+  const wineMimLPPrice = usePairPrice();
 
   useEffect(() => {
     if (chanceToWinDaily?.isFetching) return;
@@ -130,7 +130,7 @@ export default function LotteryPrize() {
         <div>Daily Deposit Pot</div>
         <div style={{ textAlign: "right" }}>
           <CountUp end={dailyDepositPotAmount} decimals={2} separator="," />{" "}
-          Wine-MIM LP
+          Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(dailyDepositPotAmount * wineMimLPPrice).toFixed(2)}
@@ -142,7 +142,7 @@ export default function LotteryPrize() {
         <div>Largest Daily Pot</div>
         <div style={{ textAlign: "right" }}>
           <CountUp end={largestDailyPotAmount} decimals={2} separator="," />{" "}
-          Wine-MIM LP
+          Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(largestDailyPotAmount * wineMimLPPrice).toFixed(2)}
@@ -154,7 +154,7 @@ export default function LotteryPrize() {
         <div>Monthly Pot Amount</div>
         <div style={{ textAlign: "right" }}>
           <CountUp end={monthlyWinnersPotAmount} decimals={2} separator="," />{" "}
-          WINE-MIM LP
+          Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(monthlyWinnersPotAmount * wineMimLPPrice).toFixed(2)}

@@ -14,7 +14,7 @@ import Footer from "../components/Footer";
 import TopDescription from "../components/TopDescription";
 import ToggleView from "../components/ToggleView";
 import ProgressTimer from "../components/ProgressTimer";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 import BackgroundGlows from "./BackgroundGlows";
 
 // Context

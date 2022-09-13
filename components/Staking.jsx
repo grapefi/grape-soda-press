@@ -19,7 +19,7 @@ import useWine from "../hooks/useWine";
 import useMim from "../hooks/useMim";
 // Helpers
 import { networkBlockExplorers } from "../helpers/networks";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 const Staking = memo(() => {
   const UserStats = () => {
@@ -33,7 +33,7 @@ const Staking = memo(() => {
     const [tokenBalance, setTokenBalance] = useState(0);
     const [wineBalance, setWineBalance] = useState(0);
     const [mimBalance, setMimBalance] = useState(0);
-    const wineMimLPPrice = useWineMIMPrice();
+    const wineMimLPPrice = usePairPrice();
     const [rewardsPerDayBalance, setRewardsPerDayBalance] = useState(0);
     const [dailyAPR, setDailyAPR] = useState(1.25);
 
@@ -88,7 +88,7 @@ const Staking = memo(() => {
         <div className="flex justify-between mt-5">
           <div>Your Total Deposits</div>
           <div style={{ textAlign: "right" }}>
-            <CountUp end={balance} decimals={4} separator="," /> WINE-MIM LP
+            <CountUp end={balance} decimals={4} separator="," /> Grape-xGrape LP
             {wineMimLPPrice && (
               <div className="text-xs">
                 ~${(balance * wineMimLPPrice).toFixed(2)}
@@ -100,7 +100,7 @@ const Staking = memo(() => {
           <div>Your Deposits From Compounding</div>
           <div style={{ textAlign: "right" }}>
             <CountUp end={balance - totalBalance} decimals={4} separator="," />{" "}
-            WINE-MIM LP
+            Grape-xGrape LP
             {wineMimLPPrice && (
               <div className="text-xs">
                 ~${((balance - totalBalance) * wineMimLPPrice).toFixed(2)}
@@ -128,7 +128,7 @@ const Staking = memo(() => {
           </div>
         </div>
         <div className="flex justify-between">
-          <div>Wine-MIM LP Price</div>
+          <div>Grape-xGrape LP Price</div>
           <div>
             ~$
             <CountUp end={wineMimLPPrice} decimals={2} separator="," />
@@ -417,7 +417,7 @@ const Staking = memo(() => {
           readOnly
         />
         <label htmlFor="lp" className="flex items-center cursor-pointer mr-5">
-          Wine/MIM LP Tokens
+          Grape-xGrape LP Tokens
         </label>
        {/* <input
           id="wine"

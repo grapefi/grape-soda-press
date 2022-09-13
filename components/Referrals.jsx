@@ -9,7 +9,7 @@ import NotificationContext from "../context/NotificationContext";
 import Card from "./utils/Card";
 // Hooks
 import useMinerRead from "../hooks/useMinerRead";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 export default function Referrals() {
   const { popNotification } = useContext(NotificationContext);
@@ -18,7 +18,7 @@ export default function Referrals() {
   const [link, setLink] = useState("");
   const [btnText, setBtnText] = useState("Copy");
   const [referrerRewards, setReferrerRewards] = useState(0);
-  const wineMimLPPrice = useWineMIMPrice();
+  const wineMimLPPrice = usePairPrice();
 
   const handleCopy = () => {
     setBtnText("Copied!");
@@ -52,7 +52,7 @@ export default function Referrals() {
       <div className="flex justify-between">
         <div>Your Referral Rewards</div>
         <div style={{textAlign: 'right'}}>
-          <CountUp end={referrerRewards} decimals={2} separator="," /> WINE-MIM LP
+          <CountUp end={referrerRewards} decimals={2} separator="," /> Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(referrerRewards * wineMimLPPrice).toFixed(2)}

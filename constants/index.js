@@ -94,7 +94,22 @@ export const TOKEN = {
     abi: erc20ABI
   },
   43114: {
-    address: '0x00cB5b42684DA62909665d8151fF80D1567722c3', // Wine/MIM JOE LP token
+    address: '0xe00b91f35924832d1a7d081d4dced55f3b80fb5c', // Grape/xGrape SW LP token
+    abi: erc20ABI
+  }
+}
+
+export const GRAPEMIM = {
+  1337: {
+    address: '0xb382247667fe8ca5327ca1fa4835ae77a9907bc8',
+    abi: erc20ABI
+  },
+  43113: {
+    address: '0xb382247667fe8ca5327ca1fa4835ae77a9907bc8',
+    abi: erc20ABI
+  },
+  43114: {
+    address: '0xb382247667fe8ca5327ca1fa4835ae77a9907bc8', // Grape/MIM TJ LP token
     abi: erc20ABI
   }
 }

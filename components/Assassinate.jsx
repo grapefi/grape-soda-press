@@ -14,7 +14,7 @@ import { useMinerWrite } from "../hooks/useMinerWrite";
 // Helpers
 import { networkBlockExplorers } from "../helpers/networks";
 import shortenAddress from "../helpers/shortenAddress";
-import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import usePairPrice from "../hooks/usePairPrice";
 
 const Assassinate = memo(() => {
   const AssassinationProfits = memo(() => {
@@ -22,7 +22,7 @@ const Assassinate = memo(() => {
     const { chain } = useNetwork();
     const { data: blockNumber } = useBlockNumber();
     const { userInfo } = useMinerRead();
-    const wineMimLPPrice = useWineMIMPrice();
+    const wineMimLPPrice = usePairPrice();
 
     const assassinationProfits = useMemo(() => {
       if (!userInfo?.data) return 0;
@@ -41,7 +41,7 @@ const Assassinate = memo(() => {
             decimals={2}
             separator=","
           />{" "}
-          WINE-MIM LP
+          Grape-xGrape LP
           {wineMimLPPrice && (
             <div className="text-xs">
               ~${(assassinationProfits * wineMimLPPrice).toFixed(2)}
