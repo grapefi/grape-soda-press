@@ -5,55 +5,59 @@ import { Disclosure } from "@headlessui/react";
 // Components
 import Connect from "./Connect";
 import Buy from "./Buy";
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function MenuTop() {
-  const [bgClass, setBgClass] = useState("");
-  const pixelsToScrollBeforeStyleBg = 64;
-  const matches = useMediaQuery('(min-width:500px)');
-
-  useEffect(() => {
-    window.addEventListener("scroll", function () {
-      scrollY > pixelsToScrollBeforeStyleBg
-        ? setBgClass("menu-background")
-        : setBgClass("");
-    });
-  }, []);
+  const matches = useMediaQuery("(min-width:500px)");
 
   return (
-    <Disclosure as="nav" className="sticky top-0 z-50 py-2 pt-0">
-      {({ open }) => (
-        <>
-          <div className={`app-container ${bgClass}`}>
-            <div className="flex items-center justify-end h-16">
-              <div className="flex items-center grow full-width-mobile">
-                <figure className="flex flex-col items-start">
-                  <Link passHref href={"https://grapefinance.app"}>
-                    <a>
-                      <Image
-                        className="h-8 md:h-16 w-auto"
-                        src={matches ? "/img/logo-horizontal.png" : "/img/grape.png"}
-                        alt="Grape Finance Logo"
-                        height={50}
-                        width={matches ? 350 : 50}
-                      />
-                    </a>
-                  </Link>
-                </figure>
-                <div className="ml-5 hide-on-mobile">
-                  <a href="https://grapefinance.gitbook.io/grape-finance-docs/unique-features/wine-press"><button className="app-btn w-full">Docs</button></a>
-                </div>
-              </div>
-              <div>
-                <Buy />
-              </div>
-              <div className="ml-5">
-                <Connect />
-              </div>
-            </div>
-          </div>
-        </>
-      )}
-    </Disclosure>
+    <div
+      className="sticky top-0"
+      style={{
+        zIndex: 10,
+        background:
+          "linear-gradient(144deg, rgb(0, 0, 0) 10%, rgba(120, 19, 120, 0.9) 50%, rgba(50, 50, 50, 0.8))",
+        boxShadow: "50px 4px 26px -18px rgba(0,0,0,0.99) !important",
+      }}
+    >
+      <div
+        className="navbar"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "0.5rem",
+          minHeight: "4rem",
+          width: "100%",
+        }}
+      >
+        <div className="flex-1">
+          <a href="https://grapefinance.app">
+            <Image
+              src={matches ? "/img/logo-horizontal.png" : "/img/grape.png"}
+              alt="Logo"
+              width={matches ? 310 : 50}
+              height={45}
+              priority
+            />
+          </a>
+        </div>
+        <div className="flex-none mr-5">
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://grape-finance.gitbook.io/grape-finance-docs/unique-features/wine-press"
+            className="app-btn w-full"
+          >
+            Docs
+          </a>
+        </div>
+        <div className="flex-none mr-5">
+          <Buy />
+        </div>
+        <div className="flex-none">
+          <Connect />
+        </div>
+      </div>
+    </div>
   );
 }

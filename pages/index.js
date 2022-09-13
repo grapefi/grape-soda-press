@@ -15,6 +15,7 @@ import TopDescription from "../components/TopDescription";
 import ToggleView from "../components/ToggleView";
 import ProgressTimer from "../components/ProgressTimer";
 import useWineMIMPrice from "../hooks/useWineMIMPrice";
+import BackgroundGlows from "./BackgroundGlows";
 
 // Context
 import NotificationContext from "../context/NotificationContext";
@@ -35,34 +36,40 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <BackgroundDecoration />
       <NetworkVerifier />
+      <BackgroundGlows />
 
       <main>
         <NotificationContext.Provider value={notificationState}>
           <Notification />
           <div className="grid gap-5 mx-auto max-w-5xl px-10">
-            <TopDescription />
-            <ProgressTimer />
+            <div style={{ zIndex: 1 }} className="grid gap-4">
+              <TopDescription />
+
+              <ProgressTimer />
+            </div>
           </div>
           {/* <div className="grid justify-center mx-auto mb-10 max-w-5xl px-5">
             <ToggleView />
           </div> */}
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4 mx-auto mb-10 max-w-5xl px-5 mt-10">
-            <div className="grid gap-4">
+            <div style={{ zIndex: 1 }} className="grid gap-4">
               <Pool />
               <TopDepositedPrize />
               <LotteryPrize />
             </div>
-            <div className="grid gap-4">
+            <div style={{ zIndex: 1 }} className="grid gap-4">
               <Staking />
               <Rewards />
               <Assassinate />
             </div>
           </div>
-          <div className="mx-auto mb-10 max-w-5xl px-5">
-            <Referrals />
+          <div className="grid grid-cols-1 mx-auto mb-10 max-w-5xl px-5">
+            {" "}
+            <div style={{ zIndex: 1 }} className="grid gap-1">
+              <Referrals />
+            </div>
           </div>
           <Footer />
         </NotificationContext.Provider>
