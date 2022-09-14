@@ -401,7 +401,7 @@ const Staking = memo(() => {
   };
 
   return (
-    <Card title="Staking" image="barrel.png">
+    <Card title="Staking" image="grape-soda.png">
       <UserStats />
       <div
         className="flex justify-center items-center mr-4 mt-5 mb-1"

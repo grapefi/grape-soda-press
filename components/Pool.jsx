@@ -26,7 +26,7 @@ export default function Pool(lpPrice) {
   }, [totalDeposited.data]);
 
   return (
-    <Card title="Grape Soda Balance" image="gshare-mim.png">
+    <Card title="Grape Soda Balance" image="soda.png">
       <div className="flex justify-between">
         <h1>Total Deposited</h1>
         <div style={{ textAlign: "right" }}>
