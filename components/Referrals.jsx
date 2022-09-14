@@ -50,7 +50,7 @@ export default function Referrals() {
   return (
     <Card title="Referrals" image="referral.png">
       <div className="flex justify-between">
-        <div>Your Referral Rewards</div>
+        <div>Your Referral Rewards (1.5% of referred deposits)</div>
         <div style={{textAlign: 'right'}}>
           <CountUp end={referrerRewards} decimals={2} separator="," /> Grape-xGrape LP
           {wineMimLPPrice && (

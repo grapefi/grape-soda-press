@@ -109,18 +109,18 @@ const Staking = memo(() => {
           </div>
         </div>
         <div className="flex justify-between mt-4">
-          <div>Your Wine/MIM LP Token Balance</div>
+          <div>Your Grape-xGrape LP Token Balance</div>
           <div>
             <CountUp end={tokenBalance} decimals={2} separator="," />
           </div>
         </div>
 
-        <div className="flex justify-between">
+        {/*<div className="flex justify-between">
           <div>Your Wine Balance</div>
           <div>
             <CountUp end={wineBalance} decimals={2} separator="," />
           </div>
-        </div>
+            </div>*/}
         <div className="flex justify-between">
           <div>Your MIM Balance</div>
           <div>
@@ -191,7 +191,7 @@ const Staking = memo(() => {
       token0,
       token1,
       amount: depositAmountWei,
-      enabled: true,
+      enabled: false,
     });
     console.log({ slip: accountForSlippage(estimateLPOut?.data).toString() });
     console.log({ estimateLPOut: estimateLPOut?.data?.toString() });
@@ -297,13 +297,13 @@ const Staking = memo(() => {
           ref ?? account?.address,
           WINE[chain?.id]?.address,
           depositAmountWei,
-          accountForSlippage(estimateLPOut?.data),
+          0,
         ],
         mim: [
           ref ?? account?.address,
           MIM[chain?.id]?.address,
           depositAmountWei,
-          accountForSlippage(estimateLPOut?.data),
+          0,
         ],
         lp: [ref ?? account?.address, depositAmountWei],
       };

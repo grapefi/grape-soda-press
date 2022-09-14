@@ -79,7 +79,7 @@ export const MINER = {
     abi: minerAbi,
   },
   43114: {
-    address: '0x2707ccc10D6C1ce49f72867aB5b85dE11e64979f',
+    address: '0x73Bc9e16772aF57974eb76a1C868DD316D2C428c',
     abi: minerAbi,
   }
 }
@@ -154,7 +154,7 @@ export const LOTTO = {
     abi: lottoAbi
   },
   43114: {
-    address: '0xc9e611b577667d722C5e0e36fd8AC43840B6de95',
+    address: '0xf5E44F05Ed746d50732549d76ee27521d350e3AA',
     abi: lottoAbi,
   }
 }
@@ -199,7 +199,7 @@ export const ROUTER = {
     abi: routerAbi,
   },
   43114: {
-    address: '0x60aE616a2155Ee3d9A68541Ba4544862310933d4',
+    address: '0xC7f372c62238f6a5b79136A9e5D16A2FD7A3f0F5',
     abi: routerAbi,
   },
 }
