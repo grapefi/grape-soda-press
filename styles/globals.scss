@@ -11,6 +11,20 @@
   src: url("../public/fonts/superstar.ttf");
 }
 
+@font-face {
+  font-family: "Tommy-R";
+  font-style: normal;
+  font-weight: 300;
+  src: url("../public/fonts/tommy_regular.otf");
+}
+
+@font-face {
+  font-family: "Tommy";
+  font-style: bold;
+  font-weight: 600;
+  src: url("../public/fonts/tommy_bold.otf");
+}
+
 html,
 body {
   padding: 0;

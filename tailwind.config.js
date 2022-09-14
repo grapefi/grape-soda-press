@@ -19,6 +19,7 @@ module.exports = {
       },
       fontFamily: {
         brand: ['Superstar', '"sans-serif"'],
+        secondary: ['Tommy-R', 'sans-serif'],
       },
       scale: {
         0: '0',
