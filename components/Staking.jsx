@@ -35,7 +35,7 @@ const Staking = memo(() => {
     const [mimBalance, setMimBalance] = useState(0);
     const wineMimLPPrice = usePairPrice();
     const [rewardsPerDayBalance, setRewardsPerDayBalance] = useState(0);
-    const [dailyAPR, setDailyAPR] = useState(1.25);
+    const [dailyAPR, setDailyAPR] = useState(1);
 
     const clearUserInfo = () => {
       setBalance(0);

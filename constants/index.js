@@ -79,7 +79,7 @@ export const MINER = {
     abi: minerAbi,
   },
   43114: {
-    address: '0x73Bc9e16772aF57974eb76a1C868DD316D2C428c',
+    address: '0x369E556F0e7A08E781527D161DaC867bb05fA597',
     abi: minerAbi,
   }
 }
@@ -124,7 +124,7 @@ export const WINE = {
     abi: erc20ABI,
   },
   43114: {
-    address: '0xC55036B5348CfB45a932481744645985010d3A44',
+    address: '0x5541D83EFaD1f281571B343977648B75d95cdAC2',
     abi: erc20ABI,
   }
 }
@@ -154,7 +154,7 @@ export const LOTTO = {
     abi: lottoAbi
   },
   43114: {
-    address: '0xf5E44F05Ed746d50732549d76ee27521d350e3AA',
+    address: '0xD7b2042f7fc78375D8DDc2ff7bD137c281E0a0FE',
     abi: lottoAbi,
   }
 }

@@ -16,7 +16,7 @@ export const useLottoRead = () => {
     writeAsync: writeBurnWineAsync,
   } = useContractWrite({
     ...lottoContract,
-    functionName: 'burnWINE',
+    functionName: 'burnGRAPE',
   });
 
   return {

@@ -12,7 +12,7 @@ import useWine from "../hooks/useWine";
 import useGrape from "../hooks/useGrape";
 import useLottoWrite from "../hooks/useLottoWrite";
 
-const WINE_PER_BATCH = 50;
+const WINE_PER_BATCH = 10;
 
 export default function BurnWine () {
   // context
