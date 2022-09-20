@@ -3,7 +3,15 @@ import { useNetwork, useContractRead } from "wagmi";
 import { getDefaultProvider } from "ethers";
 
 // constants
-import { GRAPE, TOKEN, GRAPEMIM, MIM } from "../constants";
+import {
+  GRAPE,
+  TOKEN,
+  GRAPEMIM,
+  MIM,
+  XGRAPE,
+  GRAPE_MIM_SW,
+  GRAPE_MIM_SW_MAGIK,
+} from "../constants";
 
 export const usePairPrice = () => {
   const { chain } = useNetwork();
@@ -15,14 +23,24 @@ export const usePairPrice = () => {
     contractInterface: TOKEN[chain?.id]?.abi,
   };
 
+  const xGrapeContract = {
+    addressOrName: XGRAPE[chain?.id]?.address,
+    contractInterface: XGRAPE[chain?.id]?.abi,
+  };
+
   const GrapeMIMContract = {
     addressOrName: GRAPEMIM[chain?.id]?.address,
     contractInterface: GRAPEMIM[chain?.id]?.abi,
   };
 
-  const grapeContract = {
-    addressOrName: GRAPE[chain?.id]?.address,
-    contractInterface: GRAPE[chain?.id]?.abi,
+  const GrapeMIMSWContract = {
+    addressOrName: GRAPE_MIM_SW[chain?.id]?.address,
+    contractInterface: GRAPE_MIM_SW[chain?.id]?.abi,
+  };
+
+  const GrapeMIMMagikContract = {
+    addressOrName: GRAPE_MIM_SW_MAGIK[chain?.id]?.address,
+    contractInterface: GRAPE_MIM_SW_MAGIK[chain?.id]?.abi,
   };
 
   const mimContract = {
@@ -30,38 +48,54 @@ export const usePairPrice = () => {
     contractInterface: MIM[chain?.id]?.abi,
   };
 
+  const { data: calculatedPrice } = useContractRead({
+    ...xGrapeContract,
+    functionName: "calculatePrice",
+  });
+
+  const { data: pricePerFullShare } = useContractRead({
+    ...GrapeMIMMagikContract,
+    functionName: "getPricePerFullShare",
+  });
+
+  const { data: grapeMIMSWTotalSupply } = useContractRead({
+    ...GrapeMIMSWContract,
+    functionName: "totalSupply",
+  });
+
+  const { data: mimBalanceInSWLP } = useContractRead({
+    ...mimContract,
+    functionName: "balanceOf",
+    args: [GrapeMIMSWContract.addressOrName],
+  });
+
   const { data: grapeXGrapeSupply } = useContractRead({
     ...LPContract,
     functionName: "totalSupply",
   });
 
-  const { data: grapeBalance } = useContractRead({
-    ...grapeContract,
+  const { data: xGrapeBalance } = useContractRead({
+    ...xGrapeContract,
     functionName: "balanceOf",
     args: [LPContract.addressOrName],
   });
 
-  const { data: grapeBalanceInGrapeMIM } = useContractRead({
-    ...grapeContract,
-    functionName: "balanceOf",
-    args: [GrapeMIMContract.addressOrName],
-  });
-
-  const { data: mimBalanceInGrapeMIM } = useContractRead({
-    ...mimContract,
-    functionName: "balanceOf",
-    args: [GrapeMIMContract.addressOrName],
-  });
+  const calculateXGrapePrice = () => {
+    const xGrapeToMagik = Number(calculatedPrice) / 1e18;
+    const magikLpToGrapeMIM = Number(pricePerFullShare) / 1e18;
+    const grapeMIMTotalSupply = Number(grapeMIMSWTotalSupply) / 1e18;
+    const mimBalance = Number(mimBalanceInSWLP) / 1e18;
+    const fixedLPPrice = (Number(mimBalance) * 2) / Number(grapeMIMTotalSupply);
+    return (xGrapeToMagik * magikLpToGrapeMIM * fixedLPPrice).toFixed(3);
+  };
 
   useEffect(() => {
     async function retrievePrice() {
-      const grapePrice = (
-        +mimBalanceInGrapeMIM / +grapeBalanceInGrapeMIM
-      ).toFixed(3);
+      const xGrapePrice = calculateXGrapePrice();
       const lpSupply = Number(grapeXGrapeSupply) / Math.pow(10, 18);
-      const grapeBalanceInLP = Number(grapeBalance) / Math.pow(10, 18);
+      const xGrapeBalanceInLP = Number(xGrapeBalance) / Math.pow(10, 18);
       const fixedLPPrice = (
-        (grapeBalanceInLP * grapePrice * 2) /
+        (xGrapeBalanceInLP * xGrapePrice * 2) /
         lpSupply
       ).toFixed(3);
       setPairPrice(fixedLPPrice);
@@ -69,20 +103,24 @@ export const usePairPrice = () => {
     if (
       chain &&
       provider &&
-      grapeBalance &&
+      xGrapeBalance &&
       grapeXGrapeSupply &&
-      grapeBalanceInGrapeMIM &&
-      mimBalanceInGrapeMIM
+      calculatedPrice &&
+      pricePerFullShare &&
+      grapeMIMSWTotalSupply &&
+      mimBalanceInSWLP
     ) {
       retrievePrice();
     }
   }, [
     chain,
     provider,
-    grapeBalance,
+    xGrapeBalance,
     grapeXGrapeSupply,
-    grapeBalanceInGrapeMIM,
-    mimBalanceInGrapeMIM,
+    calculatedPrice,
+    pricePerFullShare,
+    grapeMIMSWTotalSupply,
+    mimBalanceInSWLP,
   ]);
 
   return pairPrice;

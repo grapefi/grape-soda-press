@@ -1,10 +1,15 @@
 // abis and contracts
 import { erc20ABI } from 'wagmi';
+import xGrapeJson from '../artifacts/contracts/xGRAPE.sol/xGRAPE.json';
 import minerJson from '../artifacts/contracts/Miner.sol/Miner.json';
 import lotteryJson from '../artifacts/contracts/Lottery.sol/Lotto.json';
 import estimatorJson from '../artifacts/contracts/LPTokenEstimator.sol/LPTokenEstimator.json';
 import routerJson from '../artifacts/contracts/test_contracts/JoeRouter02.sol/IJoeRouter02.json';
+import GrapeMIMLPJson from '../artifacts/contracts/GrapeMIMLP.sol/GrapeMIMLP.json';
+
 const minerAbi = minerJson.abi;
+const xGrapeAbi = xGrapeJson.abi;
+const magikAbi = GrapeMIMLPJson.abi;
 const lottoAbi = lotteryJson.abi;
 const estimatorAbi = estimatorJson.abi;
 const routerAbi = routerJson.abi;
@@ -81,6 +86,51 @@ export const MINER = {
   43114: {
     address: '0x369E556F0e7A08E781527D161DaC867bb05fA597',
     abi: minerAbi,
+  }
+}
+
+export const XGRAPE = {
+  1337: {
+    address: '0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e',
+    abi: xGrapeAbi
+  },
+  43113: {
+    address: '0xbf15d4F0Bb8DE91957EFc8cf114b62b6D8cA8a5E',
+    abi: xGrapeAbi
+  },
+  43114: {
+    address: '0x95CED7c63eA990588F3fd01cdDe25247D04b8D98',
+    abi: xGrapeAbi
+  }
+}
+
+export const GRAPE_MIM_SW_MAGIK = {
+  1337: {
+    address: '0x610178dA211FEF7D417bC0e6FeD39F05609AD788',
+    abi: magikAbi,
+  },
+  43113: {
+    address: '0xbbbb1Aa7f3F7cF7eb799E28ea43a169cd6D0cF0B',
+    abi: magikAbi,
+  },
+  43114: {
+    address: '0x0da1dc567d81925cff22df74c6b9e294e9e1c3a5',
+    abi: magikAbi,
+  }
+}
+
+export const GRAPE_MIM_SW = {
+  1337: {
+    address: '0x280B2FFE2A9093A399223B170EC1D93F524157f9',
+    abi: erc20ABI
+  },
+  43113: {
+    address: '0xC108Abb54d7602331627569e2197389C26e4FE4f',
+    abi: erc20ABI,
+  },
+  43114: {
+    address: '0x9076C15D7b2297723ecEAC17419D506AE320CbF1',
+    abi: erc20ABI
   }
 }
 
