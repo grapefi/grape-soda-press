@@ -4,13 +4,13 @@ import { getDefaultProvider } from "ethers";
 
 // constants
 import {
-  GRAPE,
   TOKEN,
   GRAPEMIM,
   MIM,
   XGRAPE,
   GRAPE_MIM_SW,
   GRAPE_MIM_SW_MAGIK,
+  XGRAPEORACLE,
 } from "../constants";
 
 export const usePairPrice = () => {
@@ -28,45 +28,14 @@ export const usePairPrice = () => {
     contractInterface: XGRAPE[chain?.id]?.abi,
   };
 
-  const GrapeMIMContract = {
-    addressOrName: GRAPEMIM[chain?.id]?.address,
-    contractInterface: GRAPEMIM[chain?.id]?.abi,
+  const xGrapeOracleContract = {
+    addressOrName: XGRAPEORACLE[chain?.id]?.address,
+    contractInterface: XGRAPEORACLE[chain?.id]?.abi,
   };
 
-  const GrapeMIMSWContract = {
-    addressOrName: GRAPE_MIM_SW[chain?.id]?.address,
-    contractInterface: GRAPE_MIM_SW[chain?.id]?.abi,
-  };
-
-  const GrapeMIMMagikContract = {
-    addressOrName: GRAPE_MIM_SW_MAGIK[chain?.id]?.address,
-    contractInterface: GRAPE_MIM_SW_MAGIK[chain?.id]?.abi,
-  };
-
-  const mimContract = {
-    addressOrName: MIM[chain?.id]?.address,
-    contractInterface: MIM[chain?.id]?.abi,
-  };
-
-  const { data: calculatedPrice } = useContractRead({
-    ...xGrapeContract,
-    functionName: "calculatePrice",
-  });
-
-  const { data: pricePerFullShare } = useContractRead({
-    ...GrapeMIMMagikContract,
-    functionName: "getPricePerFullShare",
-  });
-
-  const { data: grapeMIMSWTotalSupply } = useContractRead({
-    ...GrapeMIMSWContract,
-    functionName: "totalSupply",
-  });
-
-  const { data: mimBalanceInSWLP } = useContractRead({
-    ...mimContract,
-    functionName: "balanceOf",
-    args: [GrapeMIMSWContract.addressOrName],
+  const { data: xGrapePrice } = useContractRead({
+    ...xGrapeOracleContract,
+    functionName: "xGrapePrice",
   });
 
   const { data: grapeXGrapeSupply } = useContractRead({
@@ -80,22 +49,13 @@ export const usePairPrice = () => {
     args: [LPContract.addressOrName],
   });
 
-  const calculateXGrapePrice = () => {
-    const xGrapeToMagik = Number(calculatedPrice) / 1e18;
-    const magikLpToGrapeMIM = Number(pricePerFullShare) / 1e18;
-    const grapeMIMTotalSupply = Number(grapeMIMSWTotalSupply) / 1e18;
-    const mimBalance = Number(mimBalanceInSWLP) / 1e18;
-    const fixedLPPrice = (Number(mimBalance) * 2) / Number(grapeMIMTotalSupply);
-    return (xGrapeToMagik * magikLpToGrapeMIM * fixedLPPrice).toFixed(3);
-  };
-
   useEffect(() => {
     async function retrievePrice() {
-      const xGrapePrice = calculateXGrapePrice();
+      const formattedxGrapePrice = Number(xGrapePrice) / Math.pow(10, 18);
       const lpSupply = Number(grapeXGrapeSupply) / Math.pow(10, 18);
       const xGrapeBalanceInLP = Number(xGrapeBalance) / Math.pow(10, 18);
       const fixedLPPrice = (
-        (xGrapeBalanceInLP * xGrapePrice * 2) /
+        (xGrapeBalanceInLP * formattedxGrapePrice * 2) /
         lpSupply
       ).toFixed(3);
       setPairPrice(fixedLPPrice);
@@ -105,23 +65,11 @@ export const usePairPrice = () => {
       provider &&
       xGrapeBalance &&
       grapeXGrapeSupply &&
-      calculatedPrice &&
-      pricePerFullShare &&
-      grapeMIMSWTotalSupply &&
-      mimBalanceInSWLP
+      xGrapePrice
     ) {
       retrievePrice();
     }
-  }, [
-    chain,
-    provider,
-    xGrapeBalance,
-    grapeXGrapeSupply,
-    calculatedPrice,
-    pricePerFullShare,
-    grapeMIMSWTotalSupply,
-    mimBalanceInSWLP,
-  ]);
+  }, [chain, provider, xGrapeBalance, grapeXGrapeSupply, xGrapePrice]);
 
   return pairPrice;
 };

@@ -6,6 +6,7 @@ import lotteryJson from '../artifacts/contracts/Lottery.sol/Lotto.json';
 import estimatorJson from '../artifacts/contracts/LPTokenEstimator.sol/LPTokenEstimator.json';
 import routerJson from '../artifacts/contracts/test_contracts/JoeRouter02.sol/IJoeRouter02.json';
 import GrapeMIMLPJson from '../artifacts/contracts/GrapeMIMLP.sol/GrapeMIMLP.json';
+import xGrapeOracleJson from '../artifacts/contracts/xGrapeOracle.sol/xGrapeOracle.json';
 
 const minerAbi = minerJson.abi;
 const xGrapeAbi = xGrapeJson.abi;
@@ -13,6 +14,7 @@ const magikAbi = GrapeMIMLPJson.abi;
 const lottoAbi = lotteryJson.abi;
 const estimatorAbi = estimatorJson.abi;
 const routerAbi = routerJson.abi;
+const xGrapeOracleAbi = xGrapeOracleJson.abi;
 
 const ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 
@@ -86,6 +88,21 @@ export const MINER = {
   43114: {
     address: '0x369E556F0e7A08E781527D161DaC867bb05fA597',
     abi: minerAbi,
+  }
+}
+
+export const XGRAPEORACLE = {
+  1337: {
+    address: '0x7801dc126F56ffeFbc7947B7d21ce8358265a886',
+    abi: xGrapeOracleAbi,
+  },
+  43113: {
+    address: '0x7801dc126F56ffeFbc7947B7d21ce8358265a886',
+    abi: xGrapeOracleAbi,
+  },
+  43114: {
+    address: '0x7801dc126F56ffeFbc7947B7d21ce8358265a886',
+    abi: xGrapeOracleAbi,
   }
 }
 
