@@ -74,10 +74,10 @@ const Staking = memo(() => {
     }, [rewardsPerDay]);
 
     useEffect(() => {
-      if (rewardsPerDayBalance != 0 && balance != 0) {
-        setDailyAPR(((rewardsPerDayBalance * 100) / balance).toFixed(2));
+      if (rewardsPerDayBalance != 0 && totalBalance != 0) {
+        setDailyAPR(((rewardsPerDayBalance * 100) / totalBalance).toFixed(2));
       }
-    }, [rewardsPerDayBalance, balance]);
+    }, [rewardsPerDayBalance, totalBalance]);
 
     return (
       <>
@@ -86,18 +86,18 @@ const Staking = memo(() => {
           <div>{dailyAPR}%</div>
         </div>
         <div className="flex justify-between mt-5">
-          <div>Your Total Deposits</div>
+          <div>Your Deposits</div>
           <div style={{ textAlign: "right" }}>
-            <CountUp end={balance} decimals={4} separator="," /> Grape-xGrape LP
+            <CountUp end={totalBalance} decimals={4} separator="," /> Grape-xGrape LP
             {wineMimLPPrice && (
               <div className="text-xs">
-                ~${(balance * wineMimLPPrice).toFixed(2)}
+                ~${(totalBalance * wineMimLPPrice).toFixed(2)}
               </div>
             )}
           </div>
         </div>
         <div className="flex justify-between">
-          <div>Your Deposits From Compounding</div>
+          <div>Your Compound Deposits</div>
           <div style={{ textAlign: "right" }}>
             <CountUp end={balance - totalBalance} decimals={4} separator="," />{" "}
             Grape-xGrape LP
