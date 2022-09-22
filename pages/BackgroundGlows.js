@@ -5,23 +5,28 @@ import Image from "next/image";
 
 function BackgroundGlows() {
   return (
-    <>
+    <div style={{ minWidth: "100vw" }}>
       <span
         style={{
           opacity: 0.5,
           position: "fixed",
           top: "20%",
           right: "0",
-          zIndex: 1
+          zIndex: 1,
         }}
       >
         <Image src={heroImg} alt={"GRAPE Logo"} />
       </span>
 
       <span className="background-blur">
-        <Image alt="background" src={background1} />
+        <Image
+          alt="background"
+          src={background1}
+          layout="fill"
+          className="fixed-image"
+        />
       </span>
-    </>
+    </div>
   );
 }
 
