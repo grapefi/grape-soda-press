@@ -85,22 +85,11 @@ const Staking = memo(() => {
           <div>Daily APR</div>
           <div>{dailyAPR}%</div>
         </div>
-        <div className="flex justify-between mt-5">
-          <div>Your Deposits</div>
-          <div style={{ textAlign: "right" }}>
-            <CountUp end={totalBalance} decimals={4} separator="," /> Grape-xGrape LP
-            {wineMimLPPrice && (
-              <div className="text-xs">
-                ~${(totalBalance * wineMimLPPrice).toFixed(2)}
-              </div>
-            )}
-          </div>
-        </div>
-        <div className="flex justify-between">
-          <div>Your Compound Deposits</div>
+        <div className="flex justify-between  mt-5">
+          <div>Your Compounds</div>
           <div style={{ textAlign: "right" }}>
             <CountUp end={balance - totalBalance} decimals={4} separator="," />{" "}
-            Grape-xGrape LP
+            LP
             {wineMimLPPrice && (
               <div className="text-xs">
                 ~${((balance - totalBalance) * wineMimLPPrice).toFixed(2)}
@@ -108,8 +97,32 @@ const Staking = memo(() => {
             )}
           </div>
         </div>
+        <div className="flex justify-between">
+          <div>Your Deposits</div>
+          <div style={{ textAlign: "right" }}>
+            <CountUp end={totalBalance} decimals={4} separator="," /> LP
+            {wineMimLPPrice && (
+              <div className="text-xs">
+                ~${(totalBalance * wineMimLPPrice).toFixed(2)}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="flex justify-between">
+          <div>Total Compound + Deposits</div>
+          <div style={{ textAlign: "right" }}>
+            <CountUp end={balance} decimals={4} separator="," />{" "}
+            LP
+            {wineMimLPPrice && (
+              <div className="text-xs">
+                ~${((balance) * wineMimLPPrice).toFixed(2)}
+              </div>
+            )}
+          </div>
+        </div>
         <div className="flex justify-between mt-4">
-          <div>Your Grape-xGrape LP Token Balance</div>
+          <div>Your Grape-xGrape LP Balance</div>
           <div>
             <CountUp end={tokenBalance} decimals={2} separator="," />
           </div>
