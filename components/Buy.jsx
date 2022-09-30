@@ -76,7 +76,21 @@ export default function Buy() {
                       active ? "bg-primary text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
-                    Mint xGrape
+                    Mint xGrape-Grape LP
+                  </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <a
+                    href="https://www.swapsicle.io/add/0x5541D83EFaD1f281571B343977648B75d95cdAC2/0x95CED7c63eA990588F3fd01cdDe25247D04b8D98"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`${
+                      active ? "bg-primary text-white" : "text-gray-900"
+                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                  >
+                    Pair xGrape-Grape LP
                   </a>
                 )}
               </Menu.Item>

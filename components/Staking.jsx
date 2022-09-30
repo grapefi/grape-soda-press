@@ -112,11 +112,10 @@ const Staking = memo(() => {
         <div className="flex justify-between">
           <div>Total Compound + Deposits</div>
           <div style={{ textAlign: "right" }}>
-            <CountUp end={balance} decimals={4} separator="," />{" "}
-            LP
+            <CountUp end={balance} decimals={4} separator="," /> LP
             {wineMimLPPrice && (
               <div className="text-xs">
-                ~${((balance) * wineMimLPPrice).toFixed(2)}
+                ~${(balance * wineMimLPPrice).toFixed(2)}
               </div>
             )}
           </div>
@@ -352,46 +351,66 @@ const Staking = memo(() => {
 
     DepositForm.displayName = "DespoitForm";
     return (
-      <div className="grid grid-flow-col gap-2">
-        {!hasSufficientAllowance ? (
-          <button className={`${btnClass} mt-5`} onClick={() => approve()}>
-            {approvalIsLoading ? (
-              <LoadingSpinner text="Approving" />
-            ) : (
-              `Approve`
-            )}
-          </button>
-        ) : (
-          <>
-            <div className="relative rounded-md shadow-sm  mt-5">
-              <input
-                type="text"
-                name="deposit"
-                id="deposit"
-                value={depositAmount}
-                onChange={handleDepositAmountChanged}
-                className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-20 sm:text-sm text-right text-slate-500 border-gray-300 rounded-md"
-                placeholder="0"
-              />
-              <div className="absolute inset-y-0 right-0 flex items-center">
-                <button
-                  onClick={() => maxDeposit()}
-                  className="text-brand-1 mr-5 p-1 text-sm"
-                >
-                  Max
-                </button>
-              </div>
-            </div>
-            <button className={btnClass + "  mt-5"} onClick={() => deposit()}>
-              {depositIsLoading ? (
-                <LoadingSpinner text="Depositing" />
+      <>
+        <div className="grid grid-flow-col gap-2">
+          {!hasSufficientAllowance ? (
+            <button className={`${btnClass} mt-5`} onClick={() => approve()}>
+              {approvalIsLoading ? (
+                <LoadingSpinner text="Approving" />
               ) : (
-                <span>Deposit</span>
+                `Approve`
               )}
             </button>
-          </>
-        )}
-      </div>
+          ) : (
+            <>
+              <div className="relative rounded-md shadow-sm  mt-5">
+                <input
+                  type="text"
+                  name="deposit"
+                  id="deposit"
+                  value={depositAmount}
+                  onChange={handleDepositAmountChanged}
+                  className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-20 sm:text-sm text-right text-slate-500 border-gray-300 rounded-md"
+                  placeholder="0"
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center">
+                  <button
+                    onClick={() => maxDeposit()}
+                    className="text-brand-1 mr-5 p-1 text-sm"
+                  >
+                    Max
+                  </button>
+                </div>
+              </div>
+              <button className={btnClass + "  mt-5"} onClick={() => deposit()}>
+                {depositIsLoading ? (
+                  <LoadingSpinner text="Depositing" />
+                ) : (
+                  <span>Deposit</span>
+                )}
+              </button>
+            </>
+          )}
+        </div>
+        <div className="grid grid-flow-col gap-2 mt-2">
+          <a
+            href="https://xgrape.grapefinance.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${btnClass}`}
+          >
+            Mint xGrape-Grape LP
+          </a>
+          <a
+            href="https://www.swapsicle.io/add/0x5541D83EFaD1f281571B343977648B75d95cdAC2/0x95CED7c63eA990588F3fd01cdDe25247D04b8D98"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${btnClass}`}
+          >
+            Pair xGrape-Grape LP
+          </a>
+        </div>
+      </>
     );
   });
 
@@ -432,7 +451,7 @@ const Staking = memo(() => {
         <label htmlFor="lp" className="flex items-center cursor-pointer mr-5">
           Grape-xGrape LP Tokens
         </label>
-       {/* <input
+        {/* <input
           id="wine"
           checked={asset === "wine"}
           value="wine"
